@@ -31,9 +31,18 @@ def update_user():
 @blueprint.route("/api/users/<id>", methods=(['DELETE']))
 def delete_user(id):
     user = find_user_by_id(id)
-    
+
     user.delete()
     return '', 200
+
+@blueprint.route("/api/users/deposit/<id>", methods=(['PATCH']))
+def add_user_money(id):
+    quantity = request.json["quantity"]
+
+    user = find_user_by_id(id)
+    user.add_money(quantity)
+
+    return user.serialize()
 
 def find_user_by_id(user_id):
     found_user = User.query.get(user_id)
@@ -42,3 +51,4 @@ def find_user_by_id(user_id):
         # TODO create exception when user is not found
         return 
     return found_user
+

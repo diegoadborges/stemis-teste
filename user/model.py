@@ -29,6 +29,10 @@ class User(db.Model):
         db.session.commit()
         return self
 
+    def add_money(self, quantity):
+        self.money += quantity
+        self.save()
+
     def delete(self):
         db.session.delete(self)
         db.session.commit()
