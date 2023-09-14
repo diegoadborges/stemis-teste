@@ -4,7 +4,7 @@ from user.model import User
 
 blueprint = Blueprint('user', __name__)
 
-@blueprint.route('/api/users', methods=(['GET']))
+@blueprint.route('/api/user', methods=(['GET']))
 def get_user():
     serializedUsers = []
 
@@ -13,12 +13,12 @@ def get_user():
 
     return serializedUsers
 
-@blueprint.route('/api/users/register', methods=(['POST']))
+@blueprint.route('/api/user/register', methods=(['POST']))
 def create_user():
     username = request.json["name"]
     return User(username).save().serialize()
 
-@blueprint.route("/api/users/update", methods=(['PUT']))
+@blueprint.route("/api/user/update", methods=(['PUT']))
 def update_user():
     user_id = request.json["id"]
     username = request.json["username"]
@@ -28,14 +28,14 @@ def update_user():
     user.set_name(username)
     return user.save().serialize()
 
-@blueprint.route("/api/users/<id>", methods=(['DELETE']))
+@blueprint.route("/api/user/<id>", methods=(['DELETE']))
 def delete_user(id):
     user = find_user_by_id(id)
 
     user.delete()
     return '', 200
 
-@blueprint.route("/api/users/deposit/<id>", methods=(['PATCH']))
+@blueprint.route("/api/user/deposit/<id>", methods=(['PATCH']))
 def add_user_money(id):
     quantity = request.json["quantity"]
 

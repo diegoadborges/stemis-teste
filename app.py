@@ -1,7 +1,8 @@
 from flask import Flask
 from user.views import blueprint as user_blueprint
-from user.model import db
+from product.views import blueprint as product_blueprint
 from flask_sqlalchemy import SQLAlchemy
+from database import db
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///shop.sqlite3"
@@ -13,4 +14,5 @@ if __name__ == "__main__":
     db.create_all()
 
     app.register_blueprint(user_blueprint)
+    app.register_blueprint(product_blueprint)
     app.run()

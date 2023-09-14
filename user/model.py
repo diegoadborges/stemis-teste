@@ -1,6 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from database import db
 
 class User(db.Model):
 
@@ -18,24 +17,10 @@ class User(db.Model):
         return {"id": self.id,
                 "name": self.name,
                 "money": self.money}
-    
-    def update(self, **kwargs):
-        for attr, value in kwargs.items():
-            setattr(self, attr, value)
-        return self.save() or self
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-        return self
 
     def add_money(self, quantity):
         self.money += quantity
         self.save()
-
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
 
     def set_name(self, name):
         self.name = name
