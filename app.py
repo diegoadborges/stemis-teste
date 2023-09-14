@@ -1,7 +1,6 @@
 from flask import Flask
 from user.views import blueprint as user_blueprint
 from product.views import blueprint as product_blueprint
-from flask_sqlalchemy import SQLAlchemy
 from database import db
 
 app = Flask(__name__)

@@ -1,4 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy
 from database import db
 
 class User(db.Model):
@@ -8,6 +7,7 @@ class User(db.Model):
     name = db.Column(db.String(100))
     money = db.Column(db.Double)
 
+    product = db.relationship('Product', backref='users')
 
     def __init__(self, name):
         self.name = name
