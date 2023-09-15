@@ -31,6 +31,10 @@ def get_user():
 @blueprint.route('/api/user/register', methods=(['POST']))
 def create_user():
     username = request.json["name"]
+
+    if User.query.filter_by(name = username).first() is not None:
+        raise InvalidUsage.username_exists()
+
     return User(username).save().serialize()
 
 @swag_from("../docs/user/update_user.yaml")
