@@ -1,0 +1,60 @@
+tags:
+  - product
+summary: "Create new product"
+description: "This is a simple API to create new user."
+consumes:
+- "application/json"
+produces:
+- "application/json"
+parameters:
+- in: "body"
+  name: "body"
+  description: "Accept only the name, description, cost, quantity, img url and user id"
+  required: "true"
+  schema:
+    type: "object"
+    example: {
+        "name": "product name",
+        "description": "description",
+        "cost": 10.00,
+        "quantity": 10,
+        "img_url":"example.com",
+        "user_id": 1
+      }
+responses:
+  200:
+    description: "When product is created without any error"
+    schema:
+      type: "object"
+      properties:
+        money: 
+            type: "number"
+        created_at:
+          type: "string"
+          format: "date-time"
+        description: 
+          type: "string"
+        id:
+          type: "number"
+        img_url: 
+          type: "string"
+        name: 
+          type: "string"
+        quantity: 
+          type: "number"
+        updated_at: 
+          type: "string"
+          format: "date-time"
+        user_id: 
+          type: "number"
+  404:
+    description: "When user id is not found"
+    schema:
+      type: "object"
+      example: {
+          "errors": {
+              "body": [
+                "User not found"
+              ]
+          }
+        }

@@ -17,6 +17,7 @@ def get_products():
 
     return serializedProducts
 
+@swag_from("../docs/product/create_product.yaml")
 @blueprint.route('/api/product', methods=(['POST']))
 def create_product():
     name = request.json["name"]
@@ -25,7 +26,10 @@ def create_product():
     quantity = request.json["quantity"]
     img_url = request.json["img_url"]
     user_id = request.json["user_id"]
-    
+
+    if cost <= 0 or quantity <= 0:
+        raise InvalidUsage.invalid_operation()
+
     find_user_by_id(user_id)
     
     product = Product(name, description, cost, quantity, img_url, user_id)    
