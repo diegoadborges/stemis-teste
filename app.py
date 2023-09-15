@@ -1,6 +1,7 @@
 from flask import Flask
 from user.views import blueprint as user_blueprint
 from product.views import blueprint as product_blueprint
+from sale.views import blueprint as sale_blueprint
 from database import db
 from exceptions import InvalidUsage
 
@@ -22,5 +23,6 @@ if __name__ == "__main__":
     
     app.register_blueprint(user_blueprint)
     app.register_blueprint(product_blueprint)
+    app.register_blueprint(sale_blueprint)
     app.run()
 
