@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from user.model import User
-
+import datetime as dt
 
 blueprint = Blueprint('user', __name__)
 
@@ -26,6 +26,7 @@ def update_user():
     user = find_user_by_id(user_id)
     
     user.set_name(username)
+    user.set_updated_at(dt.datetime.utcnow())
     return user.save().serialize()
 
 @blueprint.route("/api/user/<id>", methods=(['DELETE']))
@@ -41,8 +42,9 @@ def add_user_money(id):
 
     user = find_user_by_id(id)
     user.add_money(quantity)
+    user.set_updated_at(dt.datetime.utcnow())
 
-    return user.serialize()
+    return user.save().serialize()
 
 def find_user_by_id(user_id):
     found_user = User.query.get(user_id)
