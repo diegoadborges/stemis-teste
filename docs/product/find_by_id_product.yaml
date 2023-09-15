@@ -1,0 +1,53 @@
+tags:
+  - product
+summary: "Find a product by id"
+description: "This is a simple API to find a product."
+produces:
+- "application/json"
+parameters:
+- in: "path"
+  name: "id"
+  description: "Need to inform the product id"
+  required: "true"
+  schema:
+    type: integer
+    minimum: 1
+produces:
+- "application/json"
+responses:
+  200:
+    description: "Success"
+    schema:
+        type: "object"
+        properties:
+          cost: 
+            type: "number"
+          created_at:
+            type: "string"
+            format: "date-time"
+          description: 
+            type: "string"
+          id:
+            type: "number"
+          img_url: 
+            type: "string"
+          name: 
+            type: "string"
+          quantity: 
+            type: "number"
+          updated_at: 
+            type: "string"
+            format: "date-time"
+          user_id: 
+            type: "number"
+  404:
+    description: "When product id is not found"
+    schema:
+      type: "object"
+      example: {
+          "errors": {
+              "body": [
+                "User not found"
+              ]
+          }
+        }

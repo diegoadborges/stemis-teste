@@ -75,8 +75,13 @@ def delete_product(id):
     product.delete()
     return '', 200
 
+@swag_from("../docs/product/find_by_id_product.yaml")
+@blueprint.route('/api/product/<int:id>', methods=(['GET']))
 def find_product_by_id(id):
     found_product = Product.query.get(id)
     if found_product is None:
         raise InvalidUsage.product_not_found()
+    
+    if request.method == "GET":
+        return found_product.serialize()
     return found_product
