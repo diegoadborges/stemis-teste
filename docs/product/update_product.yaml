@@ -1,7 +1,7 @@
 tags:
   - product
-summary: "Create new product"
-description: "This is a simple API to create new user."
+summary: "Update an existing product"
+description: "This is a simple API to update an existing product."
 consumes:
 - "application/json"
 produces:
@@ -9,21 +9,21 @@ produces:
 parameters:
 - in: "body"
   name: "body"
-  description: "Accept only the name, description, cost, quantity, img url and user id"
+  description: "Need to inform the id, name, description, cost, quantity and img_url"
   required: "true"
   schema:
     type: "object"
     example: {
+        "id": 1,
         "name": "product name",
-        "description": "description",
-        "cost": 10.00,
-        "quantity": 10,
-        "img_url":"example.com",
-        "user_id": 1
+        "description": "product description",
+        "cost": 100.00,
+        "quantity": 3,
+        "img_url":"example.com"
       }
 responses:
   200:
-    description: "When product is created without any error"
+    description: "When product is updated without any error"
     schema:
       type: "object"
       properties:
@@ -48,13 +48,14 @@ responses:
         user_id: 
           type: "number"
   404:
-    description: "When user id is not found"
+    description: "When product id is not found"
     schema:
       type: "object"
       example: {
           "errors": {
-              "body": [
-                "User not found"
-              ]
+            "body": [
+              "Product not found"
+            ]
           }
         }
+      

@@ -36,6 +36,7 @@ def create_product():
 
     return product.save().serialize()
 
+@swag_from("../docs/product/update_product.yaml")
 @blueprint.route('/api/product/update', methods=(['PUT']))
 def update_product():
     id = request.json["id"]
