@@ -10,7 +10,7 @@ class User(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
 
-    product = db.relationship('Product', backref='users')
+    product = db.relationship('Product', cascade="all,delete", backref='users')
 
     def __init__(self, name):
         self.name = name

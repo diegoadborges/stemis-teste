@@ -1,55 +1,27 @@
 tags:
   - product
-summary: "Deposit money to an existing user"
-description: "This is a simple API to deposit money in an existing user."
-parameters:
-- in: "path"
-  name: "id"
-  description: "Need to inform the user id"
-  required: "true"
-  schema:
-    type: integer
-    minimum: 1
-- in: "body"
-  name: "body"
-  description: "Need to inform the quantity"
-  required: "true"
-  schema:
-    type: "object"
-    properties:
-      order:
-        type: "object"
-    example: {
-      "quantity": 1000.00
-    }
+summary: "List all products"
+description: "This is a simple API to list all products."
+produces:
+- "application/json"
 responses:
   200:
-    200:
-    description: "When deposit is accept without any error"
+    description: "Success"
     schema:
       type: "object"
-      properties:
-        created_at:
-          type: "string"
-          format: "date-time"
-        id:
-          type: "number"
-        money: 
-          type: "number"
-        name: 
-          type: "string"
-        updated_at: 
-          type: "string"
-          format: "date-time"
-  404:
-    description: "When user id is not found"
-    schema:
-      type: "object"
-      example: {
-          "errors": {
-              "body": [
-                "User not found"
-              ]
+      example:
+        [
+          {
+            "cost": 100.0,
+            "created_at": "Fri, 15 Sep 2023 06:31:49 GMT",
+            "description": "description",
+            "id": 1,
+            "img_url": "url",
+            "name": "name",
+            "quantity": 1,
+            "updated_at": "Fri, 15 Sep 2023 06:31:49 GMT",
+            "user_id": 1
           }
-        }
-      
+        ]
+
+          
