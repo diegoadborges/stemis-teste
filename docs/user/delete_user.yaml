@@ -1,0 +1,25 @@
+summary: "Delete an existing user"
+description: "This is a simple API to delete an existing user."
+parameters:
+- in: "path"
+  name: "id"
+  description: "Need to inform the user id"
+  required: "true"
+  schema:
+    type: integer
+    minimum: 1
+responses:
+  200:
+    description: "When user is deleted return no body"
+  404:
+    description: "When user id is not found"
+    schema:
+      type: "object"
+      example: {
+          "errors": {
+              "body": [
+                "User not found"
+              ]
+          }
+        }
+      

@@ -34,6 +34,7 @@ def update_user():
     user.set_updated_at(dt.datetime.utcnow())
     return user.save().serialize()
 
+@swag_from("../docs/user/delete_user.yaml")
 @blueprint.route("/api/user/<int:id>", methods=(['DELETE']))
 def delete_user(id):
     user = find_user_by_id(id)
