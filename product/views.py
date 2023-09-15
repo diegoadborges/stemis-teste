@@ -10,10 +10,21 @@ blueprint = Blueprint('product', __name__)
 @swag_from("../docs/product/list_products.yaml")
 @blueprint.route('/api/product', methods=(['GET']))
 def get_products():
-    serializedProducts = []
+    page = request.args.get("page")
+    per_page = request.args.get("per_page")
+    if page is None:
+        page = 1
+    if per_page is None:
+        per_page = 5
 
-    for product in Product.query.all():
-        serializedProducts.append(product.serialize())
+    serializedProducts = []
+    try:
+        per_page = int(per_page)
+        page = int(page)
+        for product in Product.query.paginate(per_page=per_page, page=page):
+            serializedProducts.append(product.serialize())
+    except:
+        InvalidUsage.invalid_value()
 
     return serializedProducts
 

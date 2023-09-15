@@ -10,6 +10,7 @@ PRODUCT_NOT_FOUND = template(["Product not found"], code=404)
 INVALID_OPERATION = template(["Invalid operation"], code=400)
 INSUFFICIENT_MONEY = template(["User has no money to buy this product"], code=400)
 INSUFFICIENT_QUANTITY = template(["The product is not available"], code=400)
+INVALID_VALUE = template(["Invalid value"], code=400)
 
 UNKNOWN_ERROR = template([], code=500)
 
@@ -51,3 +52,8 @@ class InvalidUsage(Exception):
     @classmethod
     def unknown_error(cls):
         return cls(**UNKNOWN_ERROR)
+
+    @classmethod
+    def invalid_value(cls):
+        return cls(**INVALID_VALUE)
+

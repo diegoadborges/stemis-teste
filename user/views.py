@@ -9,10 +9,21 @@ blueprint = Blueprint('user', __name__)
 @swag_from("../docs/user/list_users.yaml")
 @blueprint.route('/api/user', methods=(['GET']))
 def get_user():
-    serializedUsers = []
+    page = request.args.get("page")
+    per_page = request.args.get("per_page")
+    if page is None:
+        page = 1
+    if per_page is None:
+        per_page = 5
 
-    for user in User.query.all():
-        serializedUsers.append(user.serialize())
+    serializedUsers = []
+    try:
+        per_page = int(per_page)
+        page = int(page)
+        for user in User.query.paginate(per_page=per_page, page=page):
+            serializedUsers.append(user.serialize())
+    except:
+        InvalidUsage.invalid_value()
 
     return serializedUsers
 

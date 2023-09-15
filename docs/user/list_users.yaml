@@ -2,6 +2,17 @@ tags:
   - user
 summary: "List all users"
 description: "This is a simple API to list all users."
+parameters:
+  - in: query
+    name: page
+    schema:
+      type: integer
+    description: The page that you want to go
+  - in: query
+    name: per_page
+    schema:
+      type: integer
+    description: Define the quantity of items one page will have
 produces:
 - "application/json"
 responses:
