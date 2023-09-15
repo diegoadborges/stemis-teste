@@ -49,6 +49,13 @@ def update_product():
 
     return product.save().serialize()
 
+@blueprint.route('/api/product/<id>', methods=(['DELETE']))
+def delete_product(id):
+    product = find_product_by_id(id)
+
+    product.delete()
+    return '', 200
+
 def find_product_by_id(id):
     found_product = Product.query.get(id)
     if found_product is None:
