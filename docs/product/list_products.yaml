@@ -1,5 +1,5 @@
 tags:
-  - user
+  - product
 summary: "Deposit money to an existing user"
 description: "This is a simple API to deposit money in an existing user."
 parameters:

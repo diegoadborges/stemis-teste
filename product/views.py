@@ -3,9 +3,11 @@ from product.model import Product
 from user.views import find_user_by_id
 import datetime as dt
 from exceptions import InvalidUsage
+from flasgger.utils import swag_from
 
 blueprint = Blueprint('product', __name__)
 
+@swag_from("../docs/product/list_products.yaml")
 @blueprint.route('/api/product', methods=(['GET']))
 def get_products():
     serializedProducts = []
