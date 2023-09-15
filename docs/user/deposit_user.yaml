@@ -1,0 +1,53 @@
+summary: "Deposit money to an existing user"
+description: "This is a simple API to deposit money in an existing user."
+parameters:
+- in: "path"
+  name: "id"
+  description: "Need to inform the user id"
+  required: "true"
+  schema:
+    type: integer
+    minimum: 1
+- in: "body"
+  name: "body"
+  description: "Need to inform the quantity"
+  required: "true"
+  schema:
+    type: "object"
+    properties:
+      order:
+        type: "object"
+    example: {
+      "quantity": 1000.00
+    }
+responses:
+  200:
+    200:
+    description: "When deposit is accept without any error"
+    schema:
+      type: "object"
+      properties:
+        created_at:
+          type: "string"
+          format: "date-time"
+        id:
+          type: "number"
+        money: 
+          type: "number"
+        name: 
+          type: "string"
+        updated_at: 
+          type: "string"
+          format: "date-time"
+  404:
+    description: "When user id is not found"
+    schema:
+      type: "object"
+      example: {
+          "errors": {
+              "body": [
+                "User not found"
+              ]
+          }
+        }
+      

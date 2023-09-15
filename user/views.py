@@ -42,9 +42,13 @@ def delete_user(id):
     user.delete()
     return '', 200
 
+@swag_from("../docs/user/deposit_user.yaml")
 @blueprint.route("/api/user/deposit/<int:id>", methods=(['PATCH']))
 def add_user_money(id):
     quantity = request.json["quantity"]
+    
+    if quantity <= 0:
+        raise InvalidUsage.invalid_operation()
 
     user = find_user_by_id(id)
     user.add_money(quantity)
