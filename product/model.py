@@ -14,10 +14,11 @@ class Product(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
-    def __init__(self, name, description, cost, img_url, user_id):
+    def __init__(self, name, description, cost, quantity, img_url, user_id):
         self.name = name
         self.description = description
         self.cost = cost
+        self.quantity = quantity
         self.img_url = img_url
         self.user_id = user_id
 
@@ -49,6 +50,12 @@ class Product(db.Model):
 
     def set_cost(self, cost):
         self.cost = cost
+
+    def get_quantity(self):
+        return self.quantity
+    
+    def set_quantity(self, quantity):
+        self.quantity = quantity
 
     def get_img_url(self):
         return self.img_url

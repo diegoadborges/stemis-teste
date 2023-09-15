@@ -19,12 +19,13 @@ def create_product():
     name = request.json["name"]
     description = request.json["description"]
     cost = request.json["cost"]
+    quantity = request.json["quantity"]
     img_url = request.json["img_url"]
     user_id = request.json["user_id"]
     
     find_user_by_id(user_id)
     
-    product = Product(name, description, cost, img_url, user_id)    
+    product = Product(name, description, cost, quantity, img_url, user_id)    
 
     return product.save().serialize()
 
@@ -35,11 +36,13 @@ def update_product():
     description = request.json["description"]
     cost = request.json["cost"]
     img_url = request.json["img_url"]
+    quantity = request.json["quantity"]
 
     product = find_product_by_id(id)
     product.set_name(name)
     product.set_description(description)
     product.set_cost(cost)
+    product.set_quantity(quantity)
     product.set_img_url(img_url)
     product.set_updated_at(dt.datetime.utcnow())
 
