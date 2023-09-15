@@ -2,9 +2,11 @@ from flask import Blueprint, request
 from user.model import User
 import datetime as dt
 from exceptions import InvalidUsage
+from flasgger.utils import swag_from
 
 blueprint = Blueprint('user', __name__)
 
+@swag_from("../swagger/user/list_users.yaml")
 @blueprint.route('/api/user', methods=(['GET']))
 def get_user():
     serializedUsers = []
@@ -14,6 +16,7 @@ def get_user():
 
     return serializedUsers
 
+@swag_from("../swagger/user/register_user.yaml")
 @blueprint.route('/api/user/register', methods=(['POST']))
 def create_user():
     username = request.json["name"]

@@ -1,0 +1,28 @@
+summary: "List all users"
+description: "This is a simple API to list all users."
+produces:
+- "application/json"
+responses:
+  200:
+    description: "Success"
+    schema:
+      type: "object"
+      example:
+        [
+          {
+            "created_at": "Fri, 15 Sep 2023 06:31:35 GMT",
+            "id": 1,
+            "money": 300.0,
+            "name": "user1",
+            "updated_at": "Fri, 15 Sep 2023 06:31:35 GMT"
+          },
+          {
+            "created_at": "Fri, 15 Sep 2023 06:31:37 GMT",
+            "id": 2,
+            "money": 700.0,
+            "name": "user2",
+            "updated_at": "Fri, 15 Sep 2023 06:31:40 GMT"
+          }
+        ]
+
+          

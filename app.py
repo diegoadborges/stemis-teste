@@ -4,6 +4,7 @@ from product.views import blueprint as product_blueprint
 from sale.views import blueprint as sale_blueprint
 from database import db
 from exceptions import InvalidUsage
+from flasgger import Swagger
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///shop.sqlite3"
@@ -20,7 +21,7 @@ if __name__ == "__main__":
     db.create_all()
 
     app.errorhandler(InvalidUsage)(errorhandler)
-    
+    swagger = Swagger(app)
     app.register_blueprint(user_blueprint)
     app.register_blueprint(product_blueprint)
     app.register_blueprint(sale_blueprint)

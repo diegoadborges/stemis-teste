@@ -1,0 +1,35 @@
+summary: "Register new user"
+description: "This is a simple API to register new user."
+produces:
+- "application/json"
+parameters:
+- in: "body"
+  name: "body"
+  description: "Accepts a input dictionary of orders"
+  required: "true"
+  schema:
+    type: "object"
+    properties:
+      order:
+        type: "object"
+    example: {
+      "name": "username"
+    }
+responses:
+  200:
+    description: "When user is created without any error"
+    schema:
+      type: "object"
+      properties:
+        created_at:
+          type: "string"
+          format: "date-time"
+        id:
+          type: "number"
+        money: 
+          type: "number"
+        name: 
+          type: "string"
+        updated_at: 
+          type: "string"
+          format: "date-time"
