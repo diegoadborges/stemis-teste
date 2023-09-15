@@ -49,6 +49,6 @@ def find_product_by_id(id):
     found_product = Product.query.get(id)
     if found_product is None:
         print("not found")
-        # TODO create exception when user is not found
+        # TODO create exception when product is not found
         return 
     return found_product

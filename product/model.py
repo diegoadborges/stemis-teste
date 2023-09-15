@@ -7,6 +7,7 @@ class Product(db.Model):
     name = db.Column(db.String(100))
     description = db.Column(db.String(100))
     cost = db.Column(db.Double)
+    quantity = db.Column(db.Integer)
     img_url = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
@@ -25,6 +26,7 @@ class Product(db.Model):
                 "name": self.name,
                 "description": self.description,
                 "cost": self.cost,
+                "quantity": self.quantity,
                 "img_url": self.img_url,
                 "user_id": self.user_id,
                 "created_at": self.created_at,
