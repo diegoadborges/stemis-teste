@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from product.model import Product
 from user.views import find_user_by_id
 import datetime as dt
+from exceptions import InvalidUsage
 
 blueprint = Blueprint('product', __name__)
 
@@ -51,7 +52,5 @@ def update_product():
 def find_product_by_id(id):
     found_product = Product.query.get(id)
     if found_product is None:
-        print("not found")
-        # TODO create exception when product is not found
-        return 
+        raise InvalidUsage.product_not_found()
     return found_product

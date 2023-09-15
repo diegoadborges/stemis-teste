@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from user.model import User
 import datetime as dt
+from exceptions import InvalidUsage
 
 blueprint = Blueprint('user', __name__)
 
@@ -26,7 +27,7 @@ def update_user():
     user = find_user_by_id(user_id)
     
     user.set_name(username)
-    user.set_updated_at(dt.datetime.utcnow())
+    user.set_updated_at(dt.datetime.utcnow)
     return user.save().serialize()
 
 @blueprint.route("/api/user/<id>", methods=(['DELETE']))
@@ -49,8 +50,6 @@ def add_user_money(id):
 def find_user_by_id(user_id):
     found_user = User.query.get(user_id)
     if found_user is None:
-        print("not found")
-        # TODO create exception when user is not found
-        return 
+        raise InvalidUsage.user_not_found()
     return found_user
 
