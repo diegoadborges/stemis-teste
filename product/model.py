@@ -57,6 +57,9 @@ class Product(db.Model):
     def set_quantity(self, quantity):
         self.quantity = quantity
 
+    def decrease_quantity(self, quantity):
+        self.quantity -= quantity
+
     def get_img_url(self):
         return self.img_url
 

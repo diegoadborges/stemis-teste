@@ -26,8 +26,14 @@ class User(db.Model):
     def add_money(self, quantity):
         self.money += quantity
 
+    def discount_money(self, quantity):
+        self.money -= quantity
+
     def set_name(self, name):
         self.name = name
+
+    def get_money(self):
+        return self.money
 
     def get_created_at(self):
         return self.created_at
