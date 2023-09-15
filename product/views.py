@@ -56,6 +56,7 @@ def update_product():
 
     return product.save().serialize()
 
+@swag_from("../docs/product/delete_product.yaml")
 @blueprint.route('/api/product/<int:id>', methods=(['DELETE']))
 def delete_product(id):
     product = find_product_by_id(id)

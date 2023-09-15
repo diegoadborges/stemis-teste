@@ -1,0 +1,27 @@
+tags:
+  - product
+summary: "Delete an existing product"
+description: "This is a simple API to delete an product user."
+parameters:
+- in: "path"
+  name: "id"
+  description: "Need to inform the product id"
+  required: "true"
+  schema:
+    type: integer
+    minimum: 1
+responses:
+  200:
+    description: "When product is deleted return no body"
+  404:
+    description: "When product id is not found"
+    schema:
+      type: "object"
+      example: {
+          "errors": {
+              "body": [
+                "User not found"
+              ]
+          }
+        }
+      
