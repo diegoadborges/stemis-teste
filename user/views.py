@@ -30,14 +30,14 @@ def update_user():
     user.set_updated_at(dt.datetime.utcnow)
     return user.save().serialize()
 
-@blueprint.route("/api/user/<id>", methods=(['DELETE']))
+@blueprint.route("/api/user/<int:id>", methods=(['DELETE']))
 def delete_user(id):
     user = find_user_by_id(id)
 
     user.delete()
     return '', 200
 
-@blueprint.route("/api/user/deposit/<id>", methods=(['PATCH']))
+@blueprint.route("/api/user/deposit/<int:id>", methods=(['PATCH']))
 def add_user_money(id):
     quantity = request.json["quantity"]
 
