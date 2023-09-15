@@ -1,0 +1,50 @@
+summary: "Update an existing user"
+description: "This is a simple API to update an existing user."
+consumes:
+- "application/json"
+produces:
+- "application/json"
+parameters:
+- in: "body"
+  name: "body"
+  description: "Need to inform the user id and the new username"
+  required: "true"
+  schema:
+    type: "object"
+    properties:
+      order:
+        type: "object"
+    example: {
+      "id": "id",
+      "name": "username"
+    }
+responses:
+  200:
+    description: "When user is updated without any error"
+    schema:
+      type: "object"
+      properties:
+        created_at:
+          type: "string"
+          format: "date-time"
+        id:
+          type: "number"
+        money: 
+          type: "number"
+        name: 
+          type: "string"
+        updated_at: 
+          type: "string"
+          format: "date-time"
+  404:
+    description: "When user id is not found"
+    schema:
+      type: "object"
+      example: {
+          "errors": {
+              "body": [
+                "User not found"
+              ]
+          }
+        }
+      

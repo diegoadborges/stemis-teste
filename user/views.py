@@ -6,7 +6,7 @@ from flasgger.utils import swag_from
 
 blueprint = Blueprint('user', __name__)
 
-@swag_from("../swagger/user/list_users.yaml")
+@swag_from("../docs/user/list_users.yaml")
 @blueprint.route('/api/user', methods=(['GET']))
 def get_user():
     serializedUsers = []
@@ -16,12 +16,13 @@ def get_user():
 
     return serializedUsers
 
-@swag_from("../swagger/user/register_user.yaml")
+@swag_from("../docs/user/register_user.yaml")
 @blueprint.route('/api/user/register', methods=(['POST']))
 def create_user():
     username = request.json["name"]
     return User(username).save().serialize()
 
+@swag_from("../docs/user/update_user.yaml")
 @blueprint.route("/api/user/update", methods=(['PUT']))
 def update_user():
     user_id = request.json["id"]
@@ -30,7 +31,7 @@ def update_user():
     user = find_user_by_id(user_id)
     
     user.set_name(username)
-    user.set_updated_at(dt.datetime.utcnow)
+    user.set_updated_at(dt.datetime.utcnow())
     return user.save().serialize()
 
 @blueprint.route("/api/user/<int:id>", methods=(['DELETE']))

@@ -1,11 +1,13 @@
 summary: "Register new user"
 description: "This is a simple API to register new user."
+consumes:
+- "application/json"
 produces:
 - "application/json"
 parameters:
 - in: "body"
   name: "body"
-  description: "Accepts a input dictionary of orders"
+  description: "Accept only the username"
   required: "true"
   schema:
     type: "object"
