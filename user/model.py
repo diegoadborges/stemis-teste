@@ -1,5 +1,6 @@
 from database import db
 import datetime as dt
+from utils import parse_date
 
 class User(db.Model):
 
@@ -20,8 +21,8 @@ class User(db.Model):
         return {"id": self.id,
                 "name": self.name,
                 "money": self.money,
-                "created_at": self.created_at,
-                "updated_at": self.updated_at}
+                "created_at": parse_date(self.created_at),
+                "updated_at": parse_date(self.updated_at)}
 
     def add_money(self, quantity):
         self.money += quantity

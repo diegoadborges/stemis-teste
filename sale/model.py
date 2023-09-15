@@ -1,5 +1,6 @@
 from database import db
 import datetime as dt
+from utils import parse_date
 
 class Sale(db.Model):
     __tablename__ = 'sales'
@@ -20,4 +21,4 @@ class Sale(db.Model):
                 "buyer_id": self.buyer_id,
                 "product_id": self.product_id,
                 "value": self.value,
-                "created_at": self.created_at}
+                "created_at": parse_date(self.created_at)}

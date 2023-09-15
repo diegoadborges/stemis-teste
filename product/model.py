@@ -1,5 +1,6 @@
 from database import db
 import datetime as dt
+from utils import parse_date
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -30,8 +31,8 @@ class Product(db.Model):
                 "quantity": self.quantity,
                 "img_url": self.img_url,
                 "user_id": self.user_id,
-                "created_at": self.created_at,
-                "updated_at": self.updated_at}
+                "created_at": parse_date(self.created_at),
+                "updated_at": parse_date(self.updated_at)}
     
     def get_name(self):
         return self.name
