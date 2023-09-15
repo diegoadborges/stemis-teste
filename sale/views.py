@@ -3,9 +3,11 @@ from sale.model import Sale
 from exceptions import InvalidUsage
 from product.views import find_product_by_id
 from user.views import find_user_by_id
+from flasgger.utils import swag_from
 
 blueprint = Blueprint('sale', __name__)
 
+@swag_from("../docs/sale/list_sales.yaml")
 @blueprint.route('/api/sale', methods=(['GET']))
 def get_sale():
     serializedSale = []

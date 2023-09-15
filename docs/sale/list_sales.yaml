@@ -1,7 +1,7 @@
 tags:
-  - product
-summary: "List all products"
-description: "This is a simple API to list all products."
+  - sales
+summary: "List all sales"
+description: "This is a simple API to list all sales."
 produces:
 - "application/json"
 responses:
@@ -32,5 +32,4 @@ responses:
             format: "date-time"
           user_id: 
             type: "number"
-
           
