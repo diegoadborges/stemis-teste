@@ -1,5 +1,5 @@
 tags:
-  - sales
+  - sale
 summary: "List all sales"
 description: "This is a simple API to list all sales."
 produces:

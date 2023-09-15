@@ -17,6 +17,7 @@ def get_sale():
 
     return serializedSale
 
+@swag_from("../docs/sale/post_sales.yaml")
 @blueprint.route('/api/sale', methods=(['POST']))
 def new_sale():
     buyer_id = request.json["buyer_id"]

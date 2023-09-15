@@ -1,0 +1,50 @@
+tags:
+  - sale
+summary: "Buy a product"
+description: "This is a simple API to buy a product."
+consumes:
+- "application/json"
+produces:
+- "application/json"
+parameters:
+- in: "body"
+  name: "body"
+  description: "Accept user id and product id"
+  required: "true"
+  schema:
+    type: "object"
+    properties:
+      order:
+        type: "object"
+    example: {
+        "buyer_id": 2,
+        "product_id": 1
+      }
+responses:
+  200:
+    description: "When sale is registered without any error"
+    schema:
+      type: "object"
+      properties:
+        buyer_id:
+          type: "number"
+        created_at:
+          type: "string"
+          format: "date-time"
+        id:
+          type: "number"
+        product_id: 
+          type: "number"
+        value: 
+          type: "number"
+  404:
+    description: "When user id or product id is not found"
+    schema:
+      type: "object"
+      example: {
+          "errors": {
+              "body": [
+                "User or product not found"
+              ]
+          }
+        }
