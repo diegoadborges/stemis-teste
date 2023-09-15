@@ -43,6 +43,6 @@ def new_sale():
     buyer.save(False)
     product.save(False)
 
-    Sale(buyer_id, product_id, product_cost).save()
+    sale = Sale(buyer_id, product_id, product_cost).save()
 
-    return "OK"
+    return sale.serialize()
