@@ -14,16 +14,15 @@ def errorhandler(error):
         response.status_code = error.status_code
         return response
 
+app.app_context().push()
+db.init_app(app)
+db.create_all()
+
+app.errorhandler(InvalidUsage)(errorhandler)
+swagger = Swagger(app)
+app.register_blueprint(user_blueprint)
+app.register_blueprint(product_blueprint)
+app.register_blueprint(sale_blueprint)
+
 if __name__ == "__main__":
-    app.app_context().push()
-    app.debug = True
-    db.init_app(app)
-    db.create_all()
-
-    app.errorhandler(InvalidUsage)(errorhandler)
-    swagger = Swagger(app)
-    app.register_blueprint(user_blueprint)
-    app.register_blueprint(product_blueprint)
-    app.register_blueprint(sale_blueprint)
     app.run()
-

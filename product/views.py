@@ -86,7 +86,3 @@ def find_product_by_id(id):
     if request.method == "GET":
         return found_product.serialize()
     return found_product
-
-@blueprint.route('/', methods=(['GET']))
-def teste():
-    return parse_date(dt.datetime.utcnow())
