@@ -12,6 +12,18 @@ Para conhecer mais sobre a Stemis acesse o nosso [site](https://www.stemis.com.b
 
 Para ficar informado sobre futuros processos seletivos, siga a gente no Instagram [@stemis.tec](https://www.instagram.com/stemis.tec)
 
-# Como usar
+# Como inicializar o projeto
 
-Para acessar a documentação acesse: http://localhost:5000/apidocs/
+```
+pip install -r requirements.txt
+```
+
+Para iniciar o projeto use:
+
+```
+python app.py
+```
+
+Para acessar a documentação acesse: http://diegoadb.pythonanywhere.com/apidocs/
+
+Para ter acesso a coleções de requisições do insominia: [clique aqui](https://github.com/diegoadborges/stemis-teste/blob/main/Insomnia_2023-09-16.json) 
