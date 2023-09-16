@@ -4,7 +4,7 @@ from user.views import find_user_by_id
 import datetime as dt
 from exceptions import InvalidUsage
 from flasgger.utils import swag_from
-from utils import parse_date
+from sale.service import find_sale_by_product
 
 blueprint = Blueprint('product', __name__)
 
@@ -71,6 +71,9 @@ def update_product():
 @swag_from("../docs/product/delete_product.yaml")
 @blueprint.route('/api/product/<int:id>', methods=(['DELETE']))
 def delete_product(id):
+    if find_sale_by_product(id).first() is not None:
+        raise InvalidUsage.deletion_error_product()
+    
     product = find_product_by_id(id)
 
     product.delete()

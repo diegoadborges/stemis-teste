@@ -3,6 +3,7 @@ from user.model import User
 import datetime as dt
 from exceptions import InvalidUsage
 from flasgger.utils import swag_from
+from sale.service import find_sale_by_buyer, find_sale_by_seller
 
 blueprint = Blueprint('user', __name__)
 
@@ -52,6 +53,9 @@ def update_user():
 @swag_from("../docs/user/delete_user.yaml")
 @blueprint.route("/api/user/<int:id>", methods=(['DELETE']))
 def delete_user(id):
+    if find_sale_by_buyer(id).first() is not None or find_sale_by_seller(id) is not None:
+        raise InvalidUsage.deletion_error_user()
+
     user = find_user_by_id(id)
 
     user.delete()

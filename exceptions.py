@@ -12,6 +12,8 @@ INSUFFICIENT_MONEY = template(["User has no money to buy this product"], code=40
 INSUFFICIENT_QUANTITY = template(["The product is not available"], code=400)
 INVALID_VALUE = template(["Invalid value"], code=400)
 USERNAME_EXISTS = template(["User already exists"], code=400)
+DELETION_ERROR_USER = template(["You cannot delete this user as there is a related sale"], code=400)
+DELETION_ERROR_PRODUCT = template(["You cannot delete this product as there is a related sale"], code=400)
 
 UNKNOWN_ERROR = template([], code=500)
 
@@ -61,5 +63,14 @@ class InvalidUsage(Exception):
     @classmethod
     def username_exists(cls):
         return cls(**USERNAME_EXISTS)
+    
+    @classmethod
+    def deletion_error_user(cls):
+        return cls(**DELETION_ERROR_USER)
+
+    @classmethod
+    def deletion_error_product(cls):
+        return cls(**DELETION_ERROR_PRODUCT)
+
 
 
