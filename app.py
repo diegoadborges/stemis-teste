@@ -5,15 +5,14 @@ from sale.views import blueprint as sale_blueprint
 from database import db
 from exceptions import InvalidUsage
 from flasgger import Swagger
-from os import environ
-from sqlalchemy import create_engine
+import os
 from dotenv import load_dotenv
 
 app = Flask(__name__)
 load_dotenv()
 
-engine = create_engine(environ["DATABASE_URL"])
-engine.connect()
+DATABASE_URL = os.getenv("DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
 
 def errorhandler(error):
         response = error.to_json()
