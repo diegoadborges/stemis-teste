@@ -5,9 +5,11 @@ from sale.views import blueprint as sale_blueprint
 from database import db
 from exceptions import InvalidUsage
 from flasgger import Swagger
+from os import environ
+from sqlalchemy import create_engine
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///shop.sqlite3"
+engine = create_engine(environ["DATABASE_URL"])
 
 def errorhandler(error):
         response = error.to_json()
