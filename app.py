@@ -7,9 +7,13 @@ from exceptions import InvalidUsage
 from flasgger import Swagger
 from os import environ
 from sqlalchemy import create_engine
+from dotenv import load_dotenv
 
 app = Flask(__name__)
+load_dotenv()
+
 engine = create_engine(environ["DATABASE_URL"])
+engine.connect()
 
 def errorhandler(error):
         response = error.to_json()
