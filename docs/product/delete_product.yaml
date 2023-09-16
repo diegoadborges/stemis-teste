@@ -24,4 +24,14 @@ responses:
               ]
           }
         }
-      
+  400:
+    description: "When product has a related sale, it cannot be deleted"
+    schema:
+      type: "object"
+      example: {
+        "errors": {
+          "body": [
+            "You cannot delete this product as there is a related sale"
+          ]
+        }
+      }

@@ -24,4 +24,14 @@ responses:
               ]
           }
         }
-      
+  400:
+    description: "When user has a related sale, him cannot be deleted"
+    schema:
+      type: "object"
+      example: {
+        "errors": {
+          "body": [
+            "You cannot delete this user as there is a related sale"
+          ]
+        }
+      }
