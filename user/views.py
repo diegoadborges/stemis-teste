@@ -33,8 +33,7 @@ def get_user():
 def create_user():
     username = request.json["name"]
 
-    if User.query.filter_by(name = username).first() is not None:
-        raise InvalidUsage.username_exists()
+    find_user_by_username(username)
 
     return User(username).save().serialize()
 
@@ -43,6 +42,8 @@ def create_user():
 def update_user():
     user_id = request.json["id"]
     username = request.json["username"]
+
+    find_user_by_username(username)
 
     user = find_user_by_id(user_id)
     
@@ -81,3 +82,7 @@ def find_user_by_id(user_id):
         raise InvalidUsage.user_not_found()
     return found_user
 
+
+def find_user_by_username(username):
+    if User.query.filter_by(name = username).first() is not None:
+        raise InvalidUsage.username_exists()

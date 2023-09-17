@@ -49,4 +49,14 @@ responses:
               ]
           }
         }
-      
+  400:
+    description: "When username already exists"
+    schema:
+      type: "object"
+      example: {
+          "errors": {
+            "body": [
+              "User already exists"
+            ]
+          }
+        }
